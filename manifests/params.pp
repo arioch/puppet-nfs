@@ -14,7 +14,7 @@ class nfs::params {
       $config_user        = 'root'
       $pkg_ensure         = present
       $pkg_list_client    = 'nfs-utils'
-      $pkg_list_server    = 'nfs-utils'
+      $pkg_list_server    = 'rpcbind'
       $service_enable     = true
       $service_ensure     = running
       $service_hasrestart = true

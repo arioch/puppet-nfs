@@ -8,6 +8,7 @@
 
 * Debian 5 (Lenny)
 * Debian 6 (Squeeze)
+* CentOS 6
 
 ## Example usage
 
