@@ -1,20 +1,38 @@
 # = Class nfs::install
 #
 class nfs::install {
-  if $::nfs::client {
-    @package { $::nfs::pkg_list_client:
-      ensure => $::nfs::pkg_ensure;
+
+  case $::osfamily {
+    'RedHat': {
+      # Both client and server are installed using
+      # a single package on RHEL
+
+      if $::nfs::client or $::nfs::server {
+        package { $::nfs::pkg_list_client:
+          ensure => $::nfs::pkg_ensure;
+        }
+      }
     }
 
-    realize(Package[$::nfs::pkg_list_client])
-  }
+    'Debian': {
+      # On Debian client and server packages are split.
 
-  if $::nfs::server {
-    @package { $::nfs::pkg_list_server:
-      ensure => $::nfs::pkg_ensure;
+      if $::nfs::client {
+        package { $::nfs::pkg_list_client:
+          ensure => $::nfs::pkg_ensure;
+        }
+      }
+
+      if $::nfs::server {
+        package { $::nfs::pkg_list_server:
+          ensure => $::nfs::pkg_ensure;
+        }
+      }
     }
 
-    realize(Package[$::nfs::pkg_list_server])
+    default: {
+      fail "Operating system ${::operatingsystem} is not supported yet."
+    }
   }
 }
 
