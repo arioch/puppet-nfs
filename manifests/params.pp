@@ -19,7 +19,7 @@ class nfs::params {
       $service_ensure     = running
       $service_hasrestart = true
       $service_hasstatus  = true
-      $service_name       = ''
+      $service_name       = 'nfs'
     }
 
     'Debian', 'Ubuntu': {
