@@ -25,3 +25,23 @@
       }
     }
 
+### Export NFS shares
+
+    node /box/ {
+      class { 'nfs':
+        server => true;
+      }
+
+      nfs::export { '/srv/nfs01 10.0.1.1/24':
+        export_directory => '/srv/nfs01',
+        export_target    => '10.0.1.1/24',
+        export_options   => 'rw,sync,no_root_squash',
+      }
+
+      nfs::export { '/srv/nfs01 10.0.2.1/24':
+        export_directory => '/srv/nfs01',
+        export_target    => '10.0.2.1/24',
+        export_options   => 'rw,sync,no_root_squash',
+      }
+    }
+

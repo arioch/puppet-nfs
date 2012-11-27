@@ -9,12 +9,17 @@ class nfs::config {
     group   => $::nfs::config_group,
   }
 
-  if $::nfs::client {
-  }
-
   if $::nfs::server {
-    file { $::nfs::config_file:
-      ensure => directory,
+    concat { $::nfs::config_file:
+      group => $::nfs::config_group,
+      mode  => $::nfs::config_mode,
+      owner => $::nfs::config_user,
+    }
+
+    concat::fragment { 'export_header':
+      target  => $::nfs::config_file,
+      content => "# Managed by Puppet\n\n",
+      order   => 01,
     }
   }
 }
