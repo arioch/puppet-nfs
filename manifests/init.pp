@@ -17,6 +17,7 @@ class nfs (
   $service_ensure    = $::nfs::params::service_ensure,
   $service_hasstatus = $::nfs::params::service_hasstatus,
   $service_name      = $::nfs::params::service_name,
+  $service_rpc       = $::nfs::params::service_rpc,
 ) inherits nfs::params {
 
   include nfs::install

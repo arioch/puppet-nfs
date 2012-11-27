@@ -4,7 +4,7 @@ define nfs::export (
   $export_directory,
   $export_target,
   $ensure         = present,
-  $export_options = 'no_root_squash',
+  $export_options = 'rw,no_root_squash,no_subtree_check',
 ) {
 
   if ! $::nfs::server {

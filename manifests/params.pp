@@ -20,6 +20,7 @@ class nfs::params {
       $service_hasrestart = true
       $service_hasstatus  = true
       $service_name       = 'nfs'
+      $service_rpc        = 'rpcbind'
     }
 
     'Debian', 'Ubuntu': {
@@ -36,12 +37,12 @@ class nfs::params {
       $service_hasrestart = true
       $service_hasstatus  = true
       $service_name       = 'nfs-kernel-server'
+      $service_rpc        = 'portmap'
     }
 
     default: {
       fail "Operating system ${::operatingsystem} is not supported yet."
     }
   }
-
 }
 
