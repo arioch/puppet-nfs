@@ -2,6 +2,8 @@
 
 ## Requirements
 
+* [concat module](https://github.com/ripienaar/puppet-concat)
+
 ## Tested on...
 
 * Debian 5 (Lenny)
