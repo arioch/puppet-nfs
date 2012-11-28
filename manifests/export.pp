@@ -1,4 +1,4 @@
-# = Define: nfs::export
+# = Define nfs::export
 #
 define nfs::export (
   $export_directory,
