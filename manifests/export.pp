@@ -11,12 +11,11 @@ define nfs::export (
     fail 'NFS server support is not enabled.'
   }
 
-  if $ensure == present {
-    concat::fragment { "export_${name}":
-      target  => $::nfs::config_file,
-      content => template('nfs/export.erb'),
-      order   => 10,
-    }
+  concat::fragment { "export_${name}":
+    ensure  => $ensure,
+    target  => $::nfs::config_file,
+    content => template('nfs/export.erb'),
+    order   => 10,
   }
 }
 
