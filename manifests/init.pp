@@ -23,10 +23,12 @@ class nfs (
   include nfs::install
   include nfs::config
   include nfs::service
+  include nfs::firewall
 
   Class['nfs::install'] ->
   Class['nfs::config'] ->
-  Class['nfs::service']
+  Class['nfs::service'] ->
+  Class['nfs::firewall']
 
 }
 
