@@ -1,4 +1,4 @@
-# = Class nfs
+# = Class nfs::service
 #
 class nfs::service {
   if $::nfs::server {
