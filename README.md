@@ -3,6 +3,7 @@
 ## Requirements
 
 * [concat module](https://github.com/ripienaar/puppet-concat)
+* [firewall module](https://forge.puppetlabs.com/puppetlabs/firewall) (Only required to get the firewall feature working.)
 
 ## Tested on...
 
