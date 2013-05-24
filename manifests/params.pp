@@ -1,4 +1,4 @@
-# = Class nfs::params
+# == Class nfs::params
 #
 class nfs::params {
 

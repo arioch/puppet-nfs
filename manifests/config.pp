@@ -1,4 +1,4 @@
-# = Class nfs::config
+# == Class nfs::config
 #
 class nfs::config {
   File {

@@ -1,4 +1,4 @@
-# = Class nfs
+# == Class nfs
 #
 class nfs (
   $client            = $::nfs::params::client,

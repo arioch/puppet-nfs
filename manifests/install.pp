@@ -1,4 +1,4 @@
-# = Class nfs::install
+# == Class nfs::install
 #
 class nfs::install {
 

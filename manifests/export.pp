@@ -1,15 +1,15 @@
-# = Define nfs::export
+# == Define nfs::export
 #
 # === Parameters:
 #
-# $export_directory   Define which directory to export.
+# $export_directory::   Define which directory to export.
 #
-# $export_target      Define which target to export.
+# $export_target::      Define which target to export.
 #
-# $ensure             Default: present.
+# $ensure::             Default: present.
 #
-# $export_options     Define export options.
-#                     Default: 'rw,no_root_squash,no_subtree_check'.
+# $export_options::     Define export options.
+#                       Default: 'rw,no_root_squash,no_subtree_check'.
 #
 define nfs::export (
   $export_directory,
