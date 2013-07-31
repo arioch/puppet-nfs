@@ -21,6 +21,7 @@ class nfs::params {
       $service_hasstatus  = true
       $service_name       = 'nfs'
       $service_rpc        = 'rpcbind'
+      $service_idmap      = 'rpcidmapd'
     }
 
     'Debian', 'Ubuntu': {
@@ -38,6 +39,7 @@ class nfs::params {
       $service_hasstatus  = true
       $service_name       = 'nfs-kernel-server'
       $service_rpc        = 'portmap'
+      $service_idmap      = 'tobeconfigured'
     }
 
     default: {
