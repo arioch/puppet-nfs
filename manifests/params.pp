@@ -1,12 +1,11 @@
 # == Class nfs::params
 #
 class nfs::params {
-
   $client = true
   $server = false
 
-  case $::operatingsystem {
-    'RedHat', 'CentOS': {
+  case $::osfamily {
+    'RedHat': {
       $config_dir_mode    = '0755'
       $config_file        = '/etc/exports'
       $config_file_mode   = '0644'
@@ -24,7 +23,7 @@ class nfs::params {
       $service_idmap      = 'rpcidmapd'
     }
 
-    'Debian', 'Ubuntu': {
+    'Debian': {
       $config_dir_mode    = '0755'
       $config_file        = '/etc/exports'
       $config_file_mode   = '0644'

@@ -18,11 +18,10 @@ class nfs::service {
       hasstatus => $::nfs::service_hasstatus,
       require   => Service[$::nfs::service_rpc];
     }
-
-
   }
-  case $::operatingsystem {
-    centos, redhat: {
+
+  case $::osfamily {
+    'RedHat': {
       service { $::nfs::service_idmap:
         ensure    => $::nfs::service_ensure,
         enable    => $::nfs::service_enable,
@@ -30,12 +29,8 @@ class nfs::service {
       }
     }
 
-    debian: {
-      notify {'rpc.idmapd might need to be configured': }
+    default: {
     }
   }
-
-
 }
-
 

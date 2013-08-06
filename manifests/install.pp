@@ -1,7 +1,6 @@
 # == Class nfs::install
 #
 class nfs::install {
-
   if $::nfs::client {
     package { $::nfs::pkg_list_client:
       ensure => $::nfs::pkg_ensure;
@@ -13,6 +12,5 @@ class nfs::install {
       ensure => $::nfs::pkg_ensure;
     }
   }
-
 }
 

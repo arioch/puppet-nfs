@@ -20,7 +20,6 @@ class nfs (
   $service_rpc       = $::nfs::params::service_rpc,
   $service_idmap     = $::nfs::params::service_idmap,
 ) inherits nfs::params {
-
   include nfs::install
   include nfs::config
   include nfs::service
@@ -28,6 +27,5 @@ class nfs (
   Class['nfs::install'] ->
   Class['nfs::config'] ->
   Class['nfs::service']
-
 }
 
