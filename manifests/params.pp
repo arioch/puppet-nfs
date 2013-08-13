@@ -37,7 +37,10 @@ class nfs::params {
       $service_hasrestart = true
       $service_hasstatus  = true
       $service_name       = 'nfs-kernel-server'
-      $service_rpc        = 'portmap'
+      $service_rpc        = $::lsbdistcodename ? {
+                              /(wheezy|jessie|precise)/ => 'rpcbind',
+                              default                   => 'portmap',
+                            }
       $service_idmap      = 'tobeconfigured'
     }
 
