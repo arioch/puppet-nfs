@@ -39,6 +39,14 @@ class nfs::params {
       $service_name       = 'nfs-kernel-server'
       $service_rpc        = 'portmap'
       $service_idmap      = 'tobeconfigured'
+      $statd_context      = '/files/etc/default/nfs-common'
+      $statd_changes      = 'set STATDOPTS \'"--port 32765 --outgoing-port 32766"\''
+      $mountd_context     = '/files/etc/default/nfs-kernel-server'
+      $mountd_changes     = 'set RPCMOUNTDOPTS \'"--manage-gids --port 32767"\''
+      $lockd_tcpport      = '32768'
+      $lockd_udpport      = '32768'
+      $callback_tcpport   = '32764'
+      $sysctld_dir        = '/etc/sysctl.d'
     }
 
     default: {
