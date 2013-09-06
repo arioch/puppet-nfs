@@ -1,0 +1,6 @@
+# set nfs lockd ports
+fs.nfs.nlm_udpport = <%= @lockd_udpport %>
+fs.nfs.nlm_tcpport = <%= @lockd_tcpport %>
+
+# set nfs callback ports
+fs.nfs.nfs_callback_tcpport = <%= @callback_tcpport %>

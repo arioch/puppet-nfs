@@ -19,6 +19,14 @@ class nfs (
   $service_name      = $::nfs::params::service_name,
   $service_rpc       = $::nfs::params::service_rpc,
   $service_idmap     = $::nfs::params::service_idmap,
+  $statd_context     = $::nfs::params::statd_context,
+  $statd_changes     = $::nfs::params::statd_changes,
+  $mountd_context    = $::nfs::params::mountd_context,
+  $mountd_changes    = $::nfs::params::mountd_changes,
+  $lockd_tcpport     = $::nfs::params::lockd_tcpport,
+  $lockd_udpport     = $::nfs::params::lockd_udpport,
+  $callback_tcpport  = $::nfs::params::callback_tcpport,
+  $sysctld_dir       = $::nfs::params::sysctld_dir,
 ) inherits nfs::params {
   include nfs::install
   include nfs::config
