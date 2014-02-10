@@ -1,6 +1,11 @@
 # == Class nfs::config
 #
 class nfs::config {
+
+  Exec {
+    path => $::path,
+  }
+
   File {
     ensure  => present,
     require => Class['::nfs::install'],
