@@ -1,0 +1,10 @@
+name          'arioch-nfs'
+version       '0.0.1'
+author        'Tom De Vylder'
+license       'Apache License, Version 2.0'
+summary       'NFS module'
+description   'NFS module'
+project_page  'http://arioch.github.io/puppet-nfs/'
+
+dependency    'puppetlabs/stdlib', '>= 4.0.0'
+dependency    'puppetlabs/apt', '>= 1.4.0'
