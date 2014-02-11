@@ -33,38 +33,78 @@ class nfs::config {
       order   => 01,
     }
 
-    augeas {
-      'nfs_statd_opts':
-        context => $::nfs::statd_context,
-        changes => $::nfs::statd_changes;
 
-      'nfs_mountd_opts':
-        context => $::nfs::mountd_context,
-        changes => $::nfs::mountd_changes;
+    if ("$::nfs::statd_context"){
+      augeas {
+        'nfs_statd_opts':
+          context => $::nfs::statd_context,
+          changes => $::nfs::statd_changes;
+      }
     }
 
-    exec {
-      'nfs_lockd_tcpport':
-        command => "sysctl -w fs.nfs.nlm_tcpport=${::nfs::lockd_tcpport}",
-        unless  => "sysctl -n fs.nfs.nlm_tcpport | grep ^${::nfs::lockd_tcpport}$";
-
-      'nfs_lockd_udpport':
-        command => "sysctl -w fs.nfs.nlm_udpport=${::nfs::lockd_udpport}",
-        unless  => "sysctl -n fs.nfs.nlm_udpport | grep ^${::nfs::lockd_udpport}$";
-
-      'nfs_callback_tcpport':
-        command => "sysctl -w fs.nfs.nfs_callback_tcpport=${::nfs::callback_tcpport}",
-        unless  => "sysctl -n fs.nfs.nfs_callback_tcpport | grep ^${::nfs::callback_tcpport}$";
+    if ("$::nfs::mountd_context") {
+      augeas {
+        'nfs_mountd_opts':
+          context => $::nfs::mountd_context,
+          changes => $::nfs::mountd_changes;
+      }
     }
 
-    file {
-      "${::nfs::sysctld_dir}/nfs-kernel-server.conf":
-        ensure  => present,
-        mode    => '0644',
-        owner   => 'root',
-        group   => 'root',
-        content => template('nfs/etc/sysctl.d/nfs-kernel-server.conf.erb'),
-        notify  => undef;
+    if ("${::nfs::lockd_tcpport}"){
+      exec {
+        'nfs_lockd_tcpport':
+          command => "sysctl -w fs.nfs.nlm_tcpport=${::nfs::lockd_tcpport}",
+          unless  => "sysctl -n fs.nfs.nlm_tcpport | grep ^${::nfs::lockd_tcpport}$";
+      }
+    }
+
+    if ("${::nfs::lockd_udpport}") {
+      exec {
+        'nfs_lockd_udpport':
+          command => "sysctl -w fs.nfs.nlm_udpport=${::nfs::lockd_udpport}",
+          unless  => "sysctl -n fs.nfs.nlm_udpport | grep ^${::nfs::lockd_udpport}$";
+      }
+    }
+
+    if ("${::nfs::callback_tcpport}"){
+      exec {
+        'nfs_callback_tcpport':
+          command => "sysctl -w fs.nfs.nfs_callback_tcpport=${::nfs::callback_tcpport}",
+          unless  => "sysctl -n fs.nfs.nfs_callback_tcpport | grep ^${::nfs::callback_tcpport}$";
+      }
+    }
+
+    if ( "${::nfs::sysctld_dir}" ) {
+      file {
+        "${::nfs::sysctld_dir}/nfs-kernel-server.conf":
+          ensure  => present,
+          mode    => '0644',
+          owner   => 'root',
+          group   => 'root',
+          content => template('nfs/etc/sysctl.d/nfs-kernel-server.conf.erb'),
+          notify  => undef;
+      }
+    }
+    elsif ( "${::nfs::sysctld_file}" ){
+
+      augeas {
+        'nfs_lockd_tcpport':
+          context => "/files${::nfs::sysctld_file}",
+          changes => "set fs.nfs.nlm_tcpport ${::nfs::lockd_tcpport}",
+      }
+
+      augeas {
+        'nfs_lockd_udpport':
+          context => "/files${::nfs::sysctld_file}",
+          changes => "set fs.nfs.nlm_udpport ${::nfs::lockd_udpport}",
+      }
+
+      augeas {
+        'nfs_callbacl_tcpport':
+          context => "/files${::nfs::sysctld_file}",
+          changes => "set fs.nfs.nfs_callback_tcpport ${::nfs::callback_tcpport}",
+      }
+
     }
   }
 }

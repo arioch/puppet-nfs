@@ -28,6 +28,7 @@ class nfs (
   $lockd_udpport     = $::nfs::params::lockd_udpport,
   $callback_tcpport  = $::nfs::params::callback_tcpport,
   $sysctld_dir       = $::nfs::params::sysctld_dir,
+  $sysctld_file      = $::nfs::params::sysctld_file,
 ) inherits nfs::params {
   include nfs::install
   include nfs::config
