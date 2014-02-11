@@ -7,5 +7,4 @@ description   'NFS module'
 project_page  'http://arioch.github.io/puppet-nfs/'
 
 dependency    'puppetlabs/stdlib', '>= 4.0.0'
-dependency    'puppetlabs/apt', '>= 1.4.0'
 dependency    'puppetlabs/concat', '>= 1.0.0'
