@@ -34,7 +34,7 @@ class nfs::config {
     }
 
 
-    if ("$::nfs::statd_context"){
+    if $::nfs::statd_context {
       augeas {
         'nfs_statd_opts':
           context => $::nfs::statd_context,
@@ -42,7 +42,7 @@ class nfs::config {
       }
     }
 
-    if ("$::nfs::mountd_context") {
+    if $::nfs::mountd_context {
       augeas {
         'nfs_mountd_opts':
           context => $::nfs::mountd_context,
@@ -50,7 +50,7 @@ class nfs::config {
       }
     }
 
-    if ("${::nfs::lockd_tcpport}"){
+    if $::nfs::lockd_tcpport {
       exec {
         'nfs_lockd_tcpport':
           command => "sysctl -w fs.nfs.nlm_tcpport=${::nfs::lockd_tcpport}",
@@ -58,7 +58,7 @@ class nfs::config {
       }
     }
 
-    if ("${::nfs::lockd_udpport}") {
+    if $::nfs::lockd_udpport {
       exec {
         'nfs_lockd_udpport':
           command => "sysctl -w fs.nfs.nlm_udpport=${::nfs::lockd_udpport}",
@@ -66,7 +66,7 @@ class nfs::config {
       }
     }
 
-    if ("${::nfs::callback_tcpport}"){
+    if $::nfs::callback_tcpport {
       exec {
         'nfs_callback_tcpport':
           command => "sysctl -w fs.nfs.nfs_callback_tcpport=${::nfs::callback_tcpport}",
@@ -74,7 +74,7 @@ class nfs::config {
       }
     }
 
-    if ( "${::nfs::sysctld_dir}" ) {
+    if $::nfs::sysctld_dir {
       file {
         "${::nfs::sysctld_dir}/nfs-kernel-server.conf":
           ensure  => present,
@@ -85,7 +85,7 @@ class nfs::config {
           notify  => undef;
       }
     }
-    elsif ( "${::nfs::sysctld_file}" ){
+    elsif $::nfs::sysctld_file {
 
       augeas {
         'nfs_lockd_tcpport':
