@@ -2,13 +2,14 @@
 
 ## Requirements
 
-* [concat module](https://github.com/ripienaar/puppet-concat)
+* [puppetlabs/concat module](https://forge.puppetlabs.com/puppetlabs/concat)
 
 ## Tested on...
 
 * Debian 5 (Lenny)
 * Debian 6 (Squeeze)
 * CentOS 6
+* CentOS 7
 
 ## Example usage
 

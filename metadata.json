@@ -1,0 +1,44 @@
+{
+  "author": "Tom De Vylder",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": "\u003e\u003d 4.0.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": "\u003e\u003d 1.0.0"
+    }
+  ],
+  "license": "Apache License, Version 2.0",
+  "name": "arioch-nfs",
+  "operatingsystem_support": [
+      {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "project_page": "http://arioch.github.io/puppet-nfs/",
+  "requirements": [],
+  "source": "https://github.com/arioch/puppet-nfs",
+  "summary": "NFS module",
+  "tags": [],
+  "version": "0.1.0"
+}

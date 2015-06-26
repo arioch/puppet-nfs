@@ -106,6 +106,19 @@ class nfs::config {
       }
 
     }
+    
+    if $::nfs::create_rpcbind_files {
+      # rpcbind service on CentOS 7 reports errors if these don't exist
+      # Even tough the service still starts, it's a false error message in
+      # the rpcbind service log
+      file {'/var/lib/rpcbind/rpcbind.xdr':
+        ensure => 'present'
+      }
+      
+      file {'/var/lib/rpcbind/portmap.xdr':
+        ensure => 'present'
+      }
+    }
   }
 }
 

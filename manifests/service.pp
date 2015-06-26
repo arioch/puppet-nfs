@@ -20,17 +20,13 @@ class nfs::service {
     }
   }
 
-  case $::osfamily {
-    'RedHat': {
-      service { $::nfs::service_idmap:
-        ensure    => $::nfs::service_ensure,
-        enable    => $::nfs::service_enable,
-        hasstatus => $::nfs::service_hasstatus;
-      }
-    }
-
-    default: {
+  if $::nfs::service_idmap_exists {
+    service { $::nfs::service_idmap:
+      ensure    => $::nfs::service_ensure,
+      enable    => $::nfs::service_enable,
+      hasstatus => $::nfs::service_hasstatus;
     }
   }
+
 }
 

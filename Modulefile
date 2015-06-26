@@ -1,5 +1,5 @@
 name          'arioch-nfs'
-version       '0.0.1'
+version       '0.1.0'
 author        'Tom De Vylder'
 license       'Apache License, Version 2.0'
 summary       'NFS module'
