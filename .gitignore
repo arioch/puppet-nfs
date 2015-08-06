@@ -1,4 +1,9 @@
-*.swp
-.DS_Store
 pkg/
-.project
+Gemfile.lock
+vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
+.idea/
+*.iml
