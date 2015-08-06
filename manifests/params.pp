@@ -17,6 +17,9 @@ class nfs::params {
           $create_rpcbind_files = true
           $service_name         = 'nfs-server'
         }
+        default : {
+          fail("EL ${::operatingsystemmajrelease} is not supported by this module.")
+        }
       }
       $config_dir_mode    = '0755'
       $config_file        = '/etc/exports'
